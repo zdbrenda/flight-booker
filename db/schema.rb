@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_02_180541) do
+ActiveRecord::Schema.define(version: 2021_11_02_204305) do
 
   create_table "airports", force: :cascade do |t|
     t.string "code"
