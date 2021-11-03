@@ -5,7 +5,6 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'csv'
 require 'open-uri'
 require 'active_record/fixtures'
 
@@ -17,8 +16,17 @@ open(File.join(File.dirname(__FILE__),"airports.dat.txt")) do |rows|
         puts name,code
         if code.length >= 3
             Airport.create!(:code => code)
-            
         end
     end
-end 
+end
+
+Flight.delete_all
+1000.times do |index|
+    Flight.create!(
+        dep_airport_id: rand(1..100),
+        arr_airport_id: rand(1..100),
+        start_datetime: Faker::Time.forward(days:100),
+        duration: rand(60..600)
+    )
+end
 
