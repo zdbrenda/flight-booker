@@ -14,7 +14,8 @@ open(File.join(File.dirname(__FILE__),"airports.dat.txt")) do |rows|
         
         num,name,city,country,code=row.chomp.split(",")
         puts name,code
-        if code.length >= 3
+        if code.length >= 5
+            code=code[1..-2]
             Airport.create!(:code => code)
         end
     end
