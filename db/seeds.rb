@@ -22,7 +22,7 @@ open(File.join(File.dirname(__FILE__),"airports.dat.txt")) do |rows|
 end
 
 Flight.delete_all
-1000.times do |index|
+100000.times do |index|
     Flight.create!(
         dep_airport_id: rand(1..100),
         arr_airport_id: rand(1..100),
