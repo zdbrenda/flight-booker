@@ -20,6 +20,7 @@
     <%= simple_form_for :search, url: root_path, method: "GET", html: {class: 'form_inline'} do |f| %>
         <%= f.collection_select(:dep_airport_id, Airport.all, :id, :code)%>
         <%= f.collection_select(:arr_airport_id, Airport.all, :id, :code)%>
+        <%= f.date_select("start_datetime", order:[:day,:month,:year])%>
         <%= f.submit "Search", class: "btn btn-primary" %>
     <% end %>
 
