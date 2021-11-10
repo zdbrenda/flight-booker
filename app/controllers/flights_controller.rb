@@ -3,7 +3,8 @@ class FlightsController < ApplicationController
     def index
         # @searched = false
         @search = params["search"]
-        # debugger
+        debugger
+        @chosen_flight = params["chosen_flight"]
         if @search.present?
             # @searched = true
             dep_airport = @search["dep_airport_id"]
@@ -14,11 +15,15 @@ class FlightsController < ApplicationController
             month = @search["start_datetime(2i)"]
             year = @search["start_datetime(1i)"]
             start_datetime = (year+"/"+month+"/"+day).to_date
-            @flights = Flight.where(dep_airport_id:dep_airport, arr_airport_id: arr_airport, start_datetime: start_datetime.all_day)
+            @searched_flights = Flight.where(dep_airport_id:dep_airport, arr_airport_id: arr_airport, start_datetime: start_datetime.all_day)
             # @searched = false
-
+            
         else
             @flights = Flight.limit(10).order("start_datetime")
+        end
+
+        if @chosen_flight.present?
+            puts params[:chosen_flight]
         end
     end
 
