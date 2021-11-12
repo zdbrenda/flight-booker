@@ -1,2 +1,4 @@
 
     <%# <%= f.input :date%> %>
+
+    <%= link_to "Submit", flight_path(flight.id, flight.num_of_passengers=>params[:num_of_passengers]) %>

@@ -1,0 +1,13 @@
+<h1>Flight Details</h1>
+<h3>From: <%=@flight.dep_airport.code%></h3>
+<h3>To: <%=@flight.arr_airport.code%></h3>
+<h3>Date: <%=@flight.start_datetime%></h3>
+<h3>Duration: <%= @flight.duration%> minutes </h3>
+<h3>Number of Passengers: </h3>
+<%= simple_form_for @flight,  method: "POST", html: {class: 'form_inline'} do |f| %>
+    <%= f.select(:num_of_passengers, raw("<option>1</option><option>2</option><option>3</option><option>4</option>"), selected: "1")%>
+<% end %>
+
+
+<%= hidden_field_tag :num_of_passengers, :value => @flight.num_of_passengers%>
+<%= link_to "Book the flight", new_flight_booking_path(@flight.id, num_of_passengers: @flight.num_of_passengers)%>

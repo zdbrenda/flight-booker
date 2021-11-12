@@ -8,10 +8,13 @@
             <h3>To: <%=flight.arr_airport.code%></h3>
             <h3>Date: <%=flight.start_datetime%></h3>
             <h3>Duration: <%= flight.duration%> minutes </h3>
+            <h3>Number of Passengers: <%= @num_of_passengers%></h3>
             <%= radio_button_tag(:chosen_flight, flight.id, false )%>
-            <%= label(:status, "Choose this flight", :value => "chosen")%>
+            <%= label(:status, "See Flight Details", :value => "chosen")%>
+            
             <br/>
-            <%= submit_tag("Submit")%>
+            
+            <%= link_to "Book the flight", new_flight_booking_path(flight.id, num_of_passengers: @num_of_passengers)%>
         
         <% end %>
 
@@ -24,7 +27,7 @@
             <h3>To: <%=flight.arr_airport.code%></h3>
             <h3>Date: <%=flight.start_datetime%></h3>
             <h3>Duration: <%= flight.duration%> minutes </h3>
-        
+
         <% end %>
     <% end %>
     
@@ -41,6 +44,8 @@
         <span class="form">Please enter number of passengers: </span>
         <span class="form-content"><%= f.select(:num_of_passengers, [1,2,3,4], selected: "1")%></span>
         <br/>
+        <%= hidden_field @num_of_passengers,  :value => :search["num_of_passengers"].to_i %>
+        
         <span class="form">Please select departure date: </span>
         <span class="form-content"><%= f.date_select(:start_datetime, order:[:day,:month,:year], selected: Date.today)%></span>
         <br/>

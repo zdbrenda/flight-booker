@@ -1,0 +1,8 @@
+<h1> Verify Your Flight Information: </h1>
+<%= simple_form_for @booking,  url: flight_bookings_path, method: "POST", html: {class: 'form_inline'} do |f| %>
+    <h3>Departure Airport Code: <%= @flight.dep_airport.code%></h3>
+    <h3>Airport Airport Code: <%= @flight.arr_airport.code%></h3>
+    <h3>Departure Date: <%= @flight.start_datetime%></h3>
+    <h3>Number of Passengers: <%= params["num_of_passengers"]%>
+
+<% end %>
