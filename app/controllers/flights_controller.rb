@@ -5,8 +5,6 @@ class FlightsController < ApplicationController
         if @search.present?
             dep_airport = @search["dep_airport_id"]
             arr_airport = @search["arr_airport_id"]
-            num_of_passengers = @search["num_of_passengers"]
-            debugger
             day = @search["start_datetime(3i)"]
             month = @search["start_datetime(2i)"]
             year = @search["start_datetime(1i)"]
@@ -22,7 +20,6 @@ class FlightsController < ApplicationController
     def show
         @flight = Flight.find(params[:id])
         @num_of_passengers = @num_of_passengers
-        
     end
 
     def new

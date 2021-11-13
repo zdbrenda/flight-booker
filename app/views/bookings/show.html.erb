@@ -1,0 +1,13 @@
+<h1>Congrats! You Flight Is Successfully Booked.</h1>
+<h2>Details Are As Follows:</h2>
+<%= @booking.flight.dep_airport.code%>
+<%= @booking.flight.arr_airport.code%>
+<%= @booking.flight.start_datetime%>
+<% @booking.passengers.each  do |passenger|%>
+    <h2>Passenger Name</h2>
+    <%= passenger.name%>
+    <h2>Passenger Email</h2>
+    <%= passenger.email%>
+<% end %>
+<br/>
+<%= link_to "Go Back to Flight Search Form", root_path%>
