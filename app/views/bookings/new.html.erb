@@ -7,16 +7,25 @@
         
         <br/>
         <%= f.fields_for :passengers do |p_form| %>
-            <%= p_form.label :name%>
-            <%= p_form.text_field :name%>
-            <%= p_form.label :email%>
-            <%= p_form.text_field :email%>
+            <br/>
+            <div class="row">
+                <%= p_form.label :name, class: "col-sm-2 control-label"%>
+                <%= p_form.text_field :name, class: "form-control col-sm-10"%>
+            </div>
+            <br/>
+            <div class="row">
+                <%= p_form.label :email, class: "col-sm-2 control-label"%>
+                <%= p_form.text_field :email, class: "form-control col-sm-10"%>
+            </div>
             <br/>
         <% end %>
+
+        
     
     <br/>
     <br/>
-    <%= f.submit%>
+    <%= f.submit "Submit", class: "btn btn-primary btn-lg"%>
+    <%= link_to "Cancel", root_path, class: "btn btn-primary btn-lg"%>
     <br/>
 
 

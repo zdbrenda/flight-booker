@@ -1,53 +1,69 @@
-
+<h1>Book Your Flights Here</h1>
    <% if @searched_flights != nil %>
-    <% @searched_flights.each do |flight| %>
-            <br/>
-            ***********************************************
+    <div class="container">
+        <% @searched_flights.each do |flight| %>
+                <br/>
+                
+                
+                <h3>From: <%=flight.dep_airport.code%></h3>
+                <h3>To: <%=flight.arr_airport.code%></h3>
+                <h3>Date: <%=flight.start_datetime%></h3>
+                <h3>Duration: <%= flight.duration%> minutes </h3>
+                <h3>Number of Passengers: <%= @num_of_passengers%></h3>
+                <%= radio_button_tag(:chosen_flight, flight.id, false )%>
+                <%= label(:status, "See Flight Details", :value => "chosen")%>
+                
+                <br/>
+                
+                <%= link_to "Book the flight", new_flight_booking_path(flight.id, num_of_passengers: @num_of_passengers ), class: "btn btn-primary btn-lg"%>
+
+                <%= link_to "Cancel", root_path, class: "btn btn-primary btn-lg"%>
             
-            <h3>From: <%=flight.dep_airport.code%></h3>
-            <h3>To: <%=flight.arr_airport.code%></h3>
-            <h3>Date: <%=flight.start_datetime%></h3>
-            <h3>Duration: <%= flight.duration%> minutes </h3>
-            <h3>Number of Passengers: <%= @num_of_passengers%></h3>
-            <%= radio_button_tag(:chosen_flight, flight.id, false )%>
-            <%= label(:status, "See Flight Details", :value => "chosen")%>
-            
-            <br/>
-            
-            <%= link_to "Book the flight", new_flight_booking_path(flight.id, num_of_passengers: @num_of_passengers)%>
-        
-        <% end %>
+            <% end %>
+        </div>
 
    <% else %>
-    <% @flights.each do |flight| %>
-            <br/>
-            ***********************************************
-            
-            <h3>From: <%=flight.dep_airport.code%></h3>
-            <h3>To: <%=flight.arr_airport.code%></h3>
-            <h3>Date: <%=flight.start_datetime%></h3>
-            <h3>Duration: <%= flight.duration%> minutes </h3>
+   <h2>Some Sample Flights Provided</h2>
+    <div class="container">
+        <% @flights.each do |flight| %>
+                <br/>
+                
+                
+                <h3>From: <%=flight.dep_airport.code%></h3>
+                <h3>To: <%=flight.arr_airport.code%></h3>
+                <h3>Date: <%=flight.start_datetime%></h3>
+                <h3>Duration: <%= flight.duration%> minutes </h3>
 
-        <% end %>
+            <% end %>
+        </div>
     <% end %>
     
     
     <h1>Search Your Flights Here</h1>
 
     <%= simple_form_for :search, url: root_path, method: "GET", html: {class: 'form_inline'} do |f| %>
-        <span class="form">Please select your departure airport: </span>
-        <span class="form-content"><%= f.collection_select(:dep_airport_id, Airport.all, :id, :code,{:selected => "1"}) %></span>
-        <br/>
-        <span class="form">Please select your arrival airport: </span>
-        <span class="form-content"><%= f.collection_select(:arr_airport_id, Airport.all, :id, :code, {:selected=>"1"})%></span>
-        <br/>
-        <span class="form">Please enter number of passengers: </span>
-        <span class="form-content"><%= f.select(:num_of_passengers, [1,2,3,4], selected: "1")%></span>
-        <br/>
-        <%= hidden_field @num_of_passengers,  :value => :search["num_of_passengers"].to_i %>
-        
-        <span class="form">Please select departure date: </span>
-        <span class="form-content"><%= f.date_select(:start_datetime, order:[:day,:month,:year], selected: Date.today)%></span>
-        <br/>
-        <%= f.submit "Search", class: "btn btn-primary" %>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6 form">Please select your departure airport:    </div>
+                <div class="col-md-4"><%= f.collection_select(:dep_airport_id, Airport.all, :id, :code,{:selected => "1"}) %></div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-6 form">Please select your arrival airport:      </div>
+                <div class="col-md-4"><%= f.collection_select(:arr_airport_id, Airport.all, :id, :code, {:selected=>"1"})%></div>
+            </div>
+            <br/>
+            <div class="row">
+                <div class="col-md-6 form">Please select number of passengers:      </div>
+                <div class="col-md-4"><%= f.select(:num_of_passengers, [1,2,3,4], selected: "1")%></div>
+            </div>
+            <br/>
+            <%= hidden_field @num_of_passengers,  :value => :search["num_of_passengers"].to_i %>
+            <div class="row">
+                <div class="col-md-6 form">Please select departure date:            </div>
+                <div class="col-md-6"><%= f.date_select(:start_datetime, order:[:day,:month,:year], selected: Date.today)%></div>
+            </div>
+            <br/>
+            <%= f.submit "Search", class: "btn btn-primary btn-lg" %>
+        </div>
     <% end %>

@@ -6,7 +6,5 @@ Rails.application.routes.draw do
   end
 
   get '/bookings/:id', to: 'bookings#show', as: :'booking'
-
-  get '/flights/:flight_id/bookings/new/:num_of_passenger', to: 'bookings#create_with_num_of_passengers'
   
 end

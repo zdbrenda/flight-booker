@@ -1,13 +1,19 @@
 <h1>Congrats! You Flight Is Successfully Booked.</h1>
 <h2>Details Are As Follows:</h2>
-<%= @booking.flight.dep_airport.code%>
-<%= @booking.flight.arr_airport.code%>
-<%= @booking.flight.start_datetime%>
+<div class="row">
+    <div class="display-info col-md-6">Departure Airport: <%= @booking.flight.dep_airport.code%></div>
+    <div class="display-info col-md-6">Arrival Airport: <%= @booking.flight.arr_airport.code%></div>
+    <div class="display-info col-md-6">Departure Date: <%= @booking.flight.start_datetime%></div>
+</div>
 <% @booking.passengers.each  do |passenger|%>
-    <h2>Passenger Name</h2>
-    <%= passenger.name%>
-    <h2>Passenger Email</h2>
-    <%= passenger.email%>
+    <div class= "row">
+        <div class="display-info col-md-4">Passenger Name: </div>
+        <div class="display-info col-md-4"><%= passenger.name%></div>
+    </div>
+    <div class="row">
+        <div class="display-info col-md-4">Passenger Email</div>
+        <div class="display-info col-md-4"><%= passenger.email%></div>
+    </div>
 <% end %>
 <br/>
-<%= link_to "Go Back to Flight Search Form", root_path%>
+<%= link_to "Go Back to Flight Search Form", root_path, class: "btn btn-primary btn-lg"%>
