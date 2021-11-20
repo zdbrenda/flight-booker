@@ -40,3 +40,6 @@ yarn-debug.log*
 .yarn-integrity
 
 /app/views/flights/temp
+# Ignore application configuration
+/config/application.yml
+/config/secrets.yml
