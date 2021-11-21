@@ -73,9 +73,11 @@ Rails.application.configure do
   #   password: ENV["GMAIL_PASSWORD"]
 
   # }
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default_url_options = {
-    host: "https://www.gmail.com"
+    host: "sendgrid-rigid-59209.herokuapp.com"
   }
 
   # Ignore bad email addresses and do not raise email delivery errors.
