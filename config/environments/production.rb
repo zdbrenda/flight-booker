@@ -70,12 +70,12 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   ActionMailer::Base.smtp_settings = {
     :address =>             'smtp.sendgrid.net',            
-    :authentication =>      :plain,
+    authentication: :plain,
     :port =>                "587",
     :user_name =>           'apikey',
-    :password =>            ENV['SENDGRID_PASSWORD'],
-    :domain   =>            'heroku.com',
-    :enable_starttls_auto => true
+    :password =>            ENV['SENDGRID_API_KEY'],
+    :domain   =>            'obscure-hollows-92689.herokuapp.com',
+    
   }
 
   config.action_mailer.default_url_options = {:host => "obscure-hollows-92689.herokuapp.com", :protocol => 'https'}
