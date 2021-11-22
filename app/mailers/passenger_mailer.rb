@@ -1,6 +1,6 @@
 class PassengerMailer < ApplicationMailer
 
-    default from: "notification@example.com"
+    default from: "zdbrenda@gmail.com"
     def self.confirm_email(booking)
         @booking = booking
         @passengers = @booking.passengers
