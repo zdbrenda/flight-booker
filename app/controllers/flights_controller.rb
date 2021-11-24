@@ -12,7 +12,7 @@ class FlightsController < ApplicationController
             @num_of_passengers = @search[:num_of_passengers]
             @searched_flights = Flight.where(dep_airport_id:dep_airport, arr_airport_id: arr_airport, start_datetime: start_datetime.all_day)
         else
-            @flights = Flight.limit(10).order("start_datetime")
+            @flights = Flight.limit(10).order("start_datetime desc")
         end
 
     end
