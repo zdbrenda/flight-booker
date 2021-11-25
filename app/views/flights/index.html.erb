@@ -1,4 +1,4 @@
-<h1>Book Your Flights Here</h1>
+<h1>Brenda's Flight Booker</h1>
    <% if @searched_flights != nil %>
     <div class="container">
         <% @searched_flights.each do |flight| %>
@@ -24,8 +24,8 @@
 
    <% else %>
    <h1>Notice for Using the App</h1>
-   <h2>As I have seeded sample flights, it is likely that your random search for flights won't return any result.</h2>
-   <h2>Therefore, please refer to the following sample flights for the search. Thank you!</h2>
+   <h2 class="important">As I have seeded sample flights, it is likely that your random search for flights won't return any result.</h2>
+   <h2 class="important">Therefore, please refer to the following sample flights for the search. Thank you!</h2>
    <h2>Some Sample Flights Provided</h2>
     <div class="container">
         <% @flights.each do |flight| %>
