@@ -50,12 +50,12 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6 form">Please select your departure airport:    </div>
-                <div class="col-md-4"><%= f.collection_select(:dep_airport_id, Airport.all, :id, :code,{:selected => "1"}) %></div>
+                <div class="col-md-4"><%= f.collection_select(:dep_airport_id, Airport.order('code ASC').all, :id, :code, {:selected => "1"}) %></div>
             </div>
             <br/>
             <div class="row">
                 <div class="col-md-6 form">Please select your arrival airport:      </div>
-                <div class="col-md-4"><%= f.collection_select(:arr_airport_id, Airport.all, :id, :code, {:selected=>"1"})%></div>
+                <div class="col-md-4"><%= f.collection_select(:arr_airport_id, Airport.order('code ASC').all, :id, :code, {:selected => "1"})%></div>
             </div>
             <br/>
             <div class="row">

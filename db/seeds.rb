@@ -9,6 +9,7 @@ require 'open-uri'
 require 'active_record/fixtures'
 
 Airport.delete_all
+count = 0
 open(File.join(File.dirname(__FILE__),"airports.dat.txt")) do |rows|
     rows.read.each_line do |row|
         
@@ -17,12 +18,16 @@ open(File.join(File.dirname(__FILE__),"airports.dat.txt")) do |rows|
         if code.length >= 5
             code=code[1..-2]
             Airport.create!(:code => code)
+            count += 1
+            if count == 100
+                break
+            end
         end
     end
 end
 
 Flight.delete_all
-100000.times do |index|
+5000.times do |index|
     Flight.create!(
         dep_airport_id: rand(1..100),
         arr_airport_id: rand(1..100),
